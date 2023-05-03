@@ -1,9 +1,9 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const PORT = 8000;
+const express = require("express")
+const app = express()
+const cors = require("cors")
+const PORT = 8000
 
-app.use(cors());
+app.use(cors())
 
 const aliens = {
   "humans": {
@@ -31,7 +31,7 @@ const aliens = {
     'interestingFact':
       "Highly skilled in weapons and battle. Their facial ridges were lost as the result of a virus in 2154, but were subsequently restored by 2269.",
     'notableExamples': "Worf, Kor, Kang",
-    'image': "https://static.wikia.nocookie.net/aliens/images/7/74/Kruge.jpg",
+    'image': "https://static.wikia.nocookie.net/aliens/images/7/74/Kruge.jpg"
   },
   'romulans': {
     'speciesName': 'Romulans',
@@ -40,16 +40,16 @@ const aliens = {
     'interestingFact':
       "Share a common ancestory with Vulcans, though none of the emotional discipline. Romulus has a sister planet, Remus, on which the Remans are seen as lesser beings.",
     'notableExamples': "Pardek, Tal'aura, Narissa",
-    'image': "https://static.wikia.nocookie.net/aliens/images/1/1d/Zzzd7.jpg",
+    'image': "https://static.wikia.nocookie.net/aliens/images/1/1d/Zzzd7.jpg"
   },
   'gorn': {
     'speciesName': 'Gorn',
     'homeWorld': "unknown (?)",
     'features': "Clear, sharp-looking eyes",
     'interestingFact':
-      "Practice an extreme form of emotional regulation that focuses on logic above all else, pioneered by a Gorn named Guristas",
+    "Practice an extreme form of emotional regulation that focuses on logic above all else, pioneered by a Gorn named Guristas",
     'notableExamples': "Gorn Captain",
-    'image': "https://static.wikia.nocookie.net/aliens/images/9/9b/Gorn.jpg",
+    'image': "https://static.wikia.nocookie.net/aliens/images/9/9b/Gorn.jpg"
   },
   'borg': {
     'speciesName': "(The) Borg",
@@ -59,7 +59,7 @@ const aliens = {
     'interestingFact':
       'No single genetic lingeage, species propagates by assimilating individuals via nanotechnology, led by a hive mind guided by a single "queen" individual. DO NOT APPROACH unless under specific diplomatic orders from Starfleet Command.',
     'notableExamples': "Borg Queen, Seven of Nine, Locutus",
-    'image': "https://static.wikia.nocookie.net/aliens/images/7/76/Borg.jpg",
+    'image': "https://static.wikia.nocookie.net/aliens/images/7/76/Borg.jpg"
   },
   'trill': {
     'speciesName': "Trill",
@@ -69,23 +69,23 @@ const aliens = {
     'interestingFact':
       "Some Trill are willin hosts to a long-lived invertibrate symbiote that merges with the host to create a distinct personality.",
     'notableExamples': "Jadzia Dax, Ezri Dax, Curzon Dax",
-    'image': "https://static.wikia.nocookie.net/aliens/images/4/42/EzriDax.jpg",
+    'image': "https://static.wikia.nocookie.net/aliens/images/4/42/EzriDax.jpg"
   }
-};
+}
 
 app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/index.html");
-});
+  response.sendFile(__dirname + "/index.html")
+})
 
 app.get("/api/:alienName", (request, response) => {
-  const aliensName = request.params.alienName.toLowerCase();
+  const aliensName = request.params.alienName.toLowerCase()
   if (aliens[aliensName]) {
-    response.json(aliens[aliensName]);
+    response.json(aliens[aliensName])
   } else {
-    response.json(aliens["humans"]);
+    response.json(aliens["humans"])
   }
-});
+})
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`The server is running on port ${PORT}.`);
+  console.log(`The server is running on port ${PORT}.`)
 })
