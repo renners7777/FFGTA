@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
- app.set("port", process.env.PORT || 3000);
+const PORT = 8000;
 
 app.use(cors());
 
@@ -91,6 +91,6 @@ app.get("/api/:alienName", (request, response) => {
   }
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Server is running.");
-});
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`The server is running on port ${PORT}.`);
+}
