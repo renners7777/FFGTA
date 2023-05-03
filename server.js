@@ -93,4 +93,4 @@ app.get("/api/:alienName", (request, response) => {
 
 app.listen(process.env.PORT || PORT, () => {
   console.log(`The server is running on port ${PORT}.`);
-}
+})
