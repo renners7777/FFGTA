@@ -1,9 +1,9 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-const PORT = process.env.PORT || PORT
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const PORT = process.env.PORT || 3000;
 
-app.use(cors())
+app.use(cors());
 
 const aliens = {
   humans: {
@@ -72,25 +72,25 @@ const aliens = {
     features:
       "Outward appearance similar to humans, aside from distinct dark pigment marks running symmetrically down both sides of the face and body",
     interestingFact:
-      "Some Trill are willing hosts to a long-lived invertebrate symbiote that merges with the host to create a distinct personality.",
+      "Some Trill are willin hosts to a long-lived invertibrate symbiote that merges with the host to create a distinct personality.",
     notableExamples: "Jadzia Dax, Ezri Dax, Curzon Dax",
     image: "https://static.wikia.nocookie.net/aliens/images/4/42/EzriDax.jpg",
+  },
+};
+
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/index.html");
+});
+
+app.get("/api/:alienName", (request, response) => {
+  const aliensName = request.params.alienName.toLowerCase();
+  if (aliens[aliensName]) {
+    response.json(aliens[aliensName]);
+  } else {
+    response.json(aliens["humans"]);
   }
-}
+});
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
-})
-
-app.get('/api/:alienName', (req, res) => {
-   const aliensName = req.params.alienName.toLowerCase()
-   if(aliens[aliensName]) {
-       res.json(aliens[aliensName])
-   }else{
-    res.json(aliens['humans'])
-   }
-})
-
-app.listen(PORT || PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server is running.");
+});
